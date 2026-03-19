@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Icons</title>
+</head>
+<body>
+  <canvas id="canvas16" width="16" height="16"></canvas>
+  <canvas id="canvas48" width="48" height="48"></canvas>
+  <canvas id="canvas128" width="128" height="128"></canvas>
+
+  <script>
+    function drawIcon(canvas) {
+      const ctx = canvas.getContext('2d');
+      const size = canvas.width;
+
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#667eea');
+      gradient.addColorStop(1, '#764ba2');
+
+      // Rounded rect background
+      const radius = size * 0.22;
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, radius);
+      ctx.fill();
+
+      // Toggle switch base
+      const switchY = size * 0.4;
+      const switchHeight = size * 0.28;
+      const switchWidth = size * 0.56;
+      const switchX = (size - switchWidth) / 2;
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+      ctx.beginPath();
+      ctx.roundRect(switchX, switchY, switchWidth, switchHeight, switchHeight / 2);
+      ctx.fill();
+
+      // Toggle knob (ON position - green)
+      const knobRadius = size * 0.12;
+      const knobX = switchX + switchWidth - knobRadius - size * 0.08;
+      const knobY = switchY + switchHeight / 2;
+
+      ctx.fillStyle = '#4ade80';
+      ctx.beginPath();
+      ctx.arc(knobX, knobY, knobRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // "L" letter
+      if (size >= 48) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.font = `bold ${size * 0.25}px Arial`;
+        ctx.fillText('L', size * 0.36, size * 0.62);
+      }
+    }
+
+    drawIcon(document.getElementById('canvas16'));
+    drawIcon(document.getElementById('canvas48'));
+    drawIcon(document.getElementById('canvas128'));
+
+    console.log('Right-click each canvas and "Save image as..."');
+    console.log('Save as: icon16.png, icon48.png, icon128.png in the icons/ folder');
+  </script>
+</body>
+</html>

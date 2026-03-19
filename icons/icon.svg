@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="28" fill="url(#grad)"/>
+
+  <!-- Toggle switch base -->
+  <g filter="url(#shadow)">
+    <rect x="28" y="50" width="72" height="36" rx="18" fill="white" opacity="0.25"/>
+    <rect x="30" y="52" width="68" height="32" rx="16" fill="white" opacity="0.15"/>
+  </g>
+
+  <!-- Toggle knob (ON position) -->
+  <circle cx="82" cy="68" r="14" fill="white" filter="url(#shadow)"/>
+  <circle cx="82" cy="68" r="12" fill="#4ade80" filter="url(#glow)"/>
+
+  <!-- Power icon inside knob -->
+  <path d="M 82 62 L 82 68" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 82 68 A 5 5 0 1 1 82 68.1" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- LastPass "L" letter (stylized) -->
+  <text x="46" y="78" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" opacity="0.8">L</text>
+</svg>
